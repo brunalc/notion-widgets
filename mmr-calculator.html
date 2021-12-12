@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+
+    <style>
+        body {
+            margin: 0 auto;
+            text-align: center;
+            font-size: 23px;
+        }
+
+        .main {
+            max-width: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+        MMR per Solo Win <input type="text" id="mmr_solo_win" value="30">
+        <br>
+        MMR per Party Win <input type="text" id="mmr_party_win" value="20">
+        <br>
+        Current MMR <input type="number" id="mmr_current">
+        <br>
+        MMR Goal <input type="number" id="mmr_goal">
+        <br>
+        MMR Goal (Net Gain) <input type="number" id="mmr_goal_net">
+        <br>
+        Win rate <input type="text" id="win_rate">
+        <br>
+        Games to play (solo) <input type="text" id="solo_games">
+        <br>
+        Games to play (party) <input type="text" id="party_games">
+
+
+        <table border="1">
+            <tr>
+                <th>Win rate</th>
+                <th id="">50.10%</th>
+                <th id="">50.50%</th>
+                <th id="">51.00%</th>
+                <th id="">51.00%</th>
+                <th id="">52.00%</th>
+                <th id="">55.00%</th>
+                <th id="">60.00%</th>
+                <th id="">65.00%</th>
+                <th>80.00%</th>
+                <th>100.00%</th>
+            </tr>
+            <tr>
+                <td>Games to play (solo)</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td>Games to play (party)</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+
+    </div>
+
+
+
+
+</body>
+
+<script>
+
+    var mmr_current = document.getElementById("mmr_current");
+    var mmr_goal = document.getElementById("mmr_goal");
+    var mmr_goal_net = document.getElementById("mmr_goal_net");
+    var mmr_solo_win = document.getElementById("mmr_solo_win");
+    var mmr_party_win = document.getElementById("mmr_party_win");
+
+    function calculate_qtd_games() {
+        document.getElementById("solo_games").value = eval(mmr_goal_net.value / ((win_rate.value - (1 - win_rate.value)) * mmr_solo_win.value))
+        document.getElementById("party_games").value = eval(mmr_goal_net.value / ((win_rate.value - (1 - win_rate.value)) * mmr_party_win.value))
+    }
+
+    function calculate_net() {
+        mmr_goal_net.value = eval(parseInt(mmr_goal.value) - parseInt(mmr_current.value))
+    }
+
+    function calculate_goal() {
+        mmr_goal.value = eval(parseInt(mmr_current.value) + parseInt(mmr_goal_net.value))
+    }
+
+    document.querySelector('#mmr_goal').addEventListener('change', function (e) {
+        calculate_net();
+    });
+
+    document.querySelector('#mmr_goal_net').addEventListener('change', function (e) {
+        calculate_goal();
+    });
+
+    document.querySelector('#win_rate').addEventListener('change', function (e) {
+        calculate_qtd_games();
+    });
+
+</script>
+
+</html>
