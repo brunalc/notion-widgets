@@ -2,127 +2,301 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>calculator</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MMR Calculator</title>
 
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <!-- Custom CSS -->
     <style>
-        body {
-            margin: 0 auto;
-            text-align: center;
-            font-size: 23px;
-        }
-
-        .main {
-            max-width: 10%;
-        }
     </style>
+
 </head>
 
 <body>
-    <div>
 
-        MMR per Solo Win <input type="text" id="mmr_solo_win" value="30">
-        <br>
-        MMR per Party Win <input type="text" id="mmr_party_win" value="20">
-        <br>
-        Current MMR <input type="number" id="mmr_current">
-        <br>
-        MMR Goal <input type="number" id="mmr_goal">
-        <br>
-        MMR Goal (Net Gain) <input type="number" id="mmr_goal_net">
-        <br>
-        Win rate <input type="text" id="win_rate">
-        <br>
-        Games to play (solo) <input type="text" id="solo_games">
-        <br>
-        Games to play (party) <input type="text" id="party_games">
+    <div class="container" style="padding:10px 10px 10px 10px;">
+        <div class="card">
+            <h2 class="card-header card-title">MMR Calculator</h2>
 
+            <div class="card-body">
+                <form>
+                    <fieldset>
+                        <h6 style="display: inline-block;">MMR per Win</h6> <i data-toggle="tooltip" rel="tooltip"
+                            data-placement="right" title="Edit these only if you get bonus MMR per win"
+                            style="color:gray" class="fas fa-question-circle"></i>
 
-        <table border="1">
-            <tr>
-                <th>Win rate</th>
-                <th id="">50.10%</th>
-                <th id="">50.50%</th>
-                <th id="">51.00%</th>
-                <th id="">51.00%</th>
-                <th id="">52.00%</th>
-                <th id="">55.00%</th>
-                <th id="">60.00%</th>
-                <th id="">65.00%</th>
-                <th>80.00%</th>
-                <th>100.00%</th>
-            </tr>
-            <tr>
-                <td>Games to play (solo)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                        <div id="div_id_mmr_solo_win" class="form-group required">
+                            <label for="id_mmr_solo_win" class="control-label col-md-12">MMR per
+                                Solo Win</label>
+                            <div class="controls col-md-12 ">
+                                <input class="input-md form-control" id="id_mmr_solo_win" maxlength="30"
+                                    name="mmr_solo_win" placeholder="MMR earned after winning a solo match"
+                                    style="margin-bottom: 10px" type="text" value="30" />
+                            </div>
+                        </div>
 
-            </tr>
-            <tr>
-                <td>Games to play (party)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
+                        <div id="div_id_mmr_party_win" class="form-group required">
+                            <label for="id_mmr_party_win" class="control-label col-md-12"> MMR per
+                                Party Win</label>
+                            <div class="controls col-md-12 ">
+                                <input class="input-md form-control" id="id_mmr_party_win" maxlength="30"
+                                    name="mmr_party_win" placeholder="MMR earned after winning a party match"
+                                    style="margin-bottom: 10px" type="text" value="20" />
+                            </div>
+                        </div>
+                    </fieldset>
 
+                    <fieldset>
+                        <h6>MMR Goal</h6>
 
+                        <div id="div_id_mmr_current" class="form-group required">
+                            <label for="id_mmr_current" class="control-label col-md-12"> Current
+                                MMR</label>
+                            <div class="controls col-md-12 ">
+                                <input class="input-md form-control" id="id_mmr_current" maxlength="30"
+                                    name="mmr_current" placeholder="Your current MMR value" style="margin-bottom: 10px"
+                                    type="text" />
+                            </div>
+                        </div>
+
+                        <div id="div_id_mmr_goal" class="form-group required">
+                            <label for="id_mmr_goal" class="control-label col-md-12"> MMR
+                                Goal</label>
+                            <div class="controls col-md-12 ">
+                                <input class="input-md form-control" id="id_mmr_goal" maxlength="30" name="mmr_goal"
+                                    placeholder="The MMR you want to achieve" style="margin-bottom: 10px" type="text" />
+                            </div>
+                        </div>
+
+                        <div id="div_id_mmr_goal_net" class="form-group required">
+                            <label for="id_mmr_goal_net" class="control-label col-md-12"> MMR Goal
+                                (Net Gain)</label>
+                            <div class="controls col-md-12 ">
+                                <input class="input-md form-control" id="id_mmr_goal_net" maxlength="30"
+                                    name="mmr_goal_net" placeholder="The amount of MMR you want to earn"
+                                    style="margin-bottom: 10px" type="text" />
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <h6>Win Rate</h6>
+
+                        <div id="div_id_win_rate" class="form-group required">
+                            <label for="id_win_rate" class="control-label col-md-12"> Win
+                                Rate</label>
+                            <div class="controls col-md-12 ">
+                                <div class="input-group">
+                                    <input input type="number" min="1" max="100" class="form-control" id="id_win_rate"
+                                        name="win_rate" placeholder="Your current win rate" type="text" step=".01" />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </div>
+                                <small id="passwordHelpBlock" class="form-text text-muted">
+                                    Win rate needs to be greater than 50%
+                                </small>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group float-right">
+                        <button type="reset" class="btn btn-secondary">Clear</button>
+                        <button type="button" id="calculate" class="btn btn-primary">Calculate</button>
+                    </div>
+                </form>
+                <hr style="margin-top:50px">
+                <h4 class="card-title">Results</h4>
+
+                <div id="div_id_solo_games" class="form-group required">
+                    <label for="id_solo_games" class="control-label col-md-12"> Games to play
+                        (solo)</label>
+                    <div class="controls col-md-8 ">
+                        <input class="input-md form-control form-control-plaintext" id="id_solo_games" maxlength="30"
+                            name="solo_games"
+                            placeholder="Quantity of solo games you have to play based on your win rate"
+                            style="margin-bottom: 10px" type="text" readonly />
+                    </div>
+                </div>
+
+                <div id="div_id_party_games" class="form-group required">
+                    <label for="id_party_games" class="control-label col-md-12"> Games to play
+                        (party)</label>
+                    <div class="controls col-md-8 ">
+                        <input class="input-md form-control form-control-plaintext" id="id_party_games" maxlength="30"
+                            name="party_games"
+                            placeholder="Quantity of party games you have to play based on your win rate"
+                            style="margin-bottom: 10px" type="text" readonly />
+                    </div>
+                </div>
+                <br>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Win rate</th>
+                            <th>Games to play (solo)</th>
+                            <th>Games to play (party)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="">50.10%</td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td id="">50.50%</td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td id="">51.00%</td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td id="">52.00%</td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td id="">55.00%</td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td id="">60.00%</th>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td id="">65.00%</td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td>80.00%</td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td>100.00%</td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="card-footer">
+                Based on <a
+                    href="https://docs.google.com/spreadsheets/d/16DEwivBF_VgtvPE5jljubmcEFFMeqqDnKqu1FsrMNwc/edit#gid=494773691">Dota
+                    Excels</a> by ZQuixotix
+            </div>
+        </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!-- My code -->
+    <script>
+
+        var mmr_current = document.getElementById("id_mmr_current");
+        var mmr_goal = document.getElementById("id_mmr_goal");
+        var mmr_goal_net = document.getElementById("id_mmr_goal_net");
+        var mmr_solo_win = document.getElementById("id_mmr_solo_win");
+        var mmr_party_win = document.getElementById("id_mmr_party_win");
+        var win_rate = document.getElementById("id_win_rate");
+        var solo_games = document.getElementById("id_solo_games");
+        var party_games = document.getElementById("id_party_games");
+
+        function calculate_qtd_games(net, wr, mmr_win) {
+            return Math.ceil(eval(net / ((wr - (1 - wr)) * mmr_win)));
+        }
+
+        function fill_results() {
+            solo_games.value = calculate_qtd_games(mmr_goal_net.value, win_rate.value / 100, mmr_solo_win.value);
+            party_games.value = calculate_qtd_games(mmr_goal_net.value, win_rate.value / 100, mmr_party_win.value);
+        }
+
+        function calculate_net() {
+            if (mmr_goal.value != "" & mmr_current.value != "") {
+                mmr_goal_net.value = eval(parseInt(mmr_goal.value) - parseInt(mmr_current.value));
+            }
+        }
+
+        function calculate_goal() {
+            if (mmr_goal_net.value != "" & mmr_current.value != "") {
+                mmr_goal.value = eval(parseInt(mmr_current.value) + parseInt(mmr_goal_net.value))
+            }
+        }
+
+        function calculate_current() {
+            if (mmr_goal_net.value != "" & mmr_goal.value != "") {
+                mmr_goal.value = eval(parseInt(mmr_goal.value) - parseInt(mmr_goal_net.value))
+            }
+        }
+
+        function fill_table() {
+            var rows = document.getElementsByTagName("tbody")[0].rows;
+            for (var i = 0; i < rows.length; i++) {
+                var wr = parseFloat(rows[i].cells[0].innerHTML) / 100;
+                rows[i].cells[1].innerHTML = calculate_qtd_games(mmr_goal_net.value, wr, mmr_solo_win.value);
+                rows[i].cells[2].innerHTML = calculate_qtd_games(mmr_goal_net.value, wr, mmr_party_win.value);
+            }
+        }
+
+        [document.querySelector('#id_mmr_goal')].forEach(item => {
+            item.addEventListener('change', function (e) {
+                calculate_net();
+            })
+        });
+
+        [document.querySelector('#id_mmr_goal_net')].forEach(item => {
+            item.addEventListener('change', function (e) {
+                calculate_goal();
+            })
+        });
+
+        document.querySelector('#calculate').addEventListener('click', function (e) {
+            fill_results();
+            fill_table();
+        });
+
+//         [document.querySelector('#id_mmr_goal'), document.querySelector('#id_mmr_goal_net')].forEach(item => {
+//   item.addEventListener('change', function (e) {
+//             calculate_current();
+//         })});
 
 
 
+    </script>
 </body>
 
-<script>
 
-    var mmr_current = document.getElementById("mmr_current");
-    var mmr_goal = document.getElementById("mmr_goal");
-    var mmr_goal_net = document.getElementById("mmr_goal_net");
-    var mmr_solo_win = document.getElementById("mmr_solo_win");
-    var mmr_party_win = document.getElementById("mmr_party_win");
-
-    function calculate_qtd_games() {
-        document.getElementById("solo_games").value = eval(mmr_goal_net.value / ((win_rate.value - (1 - win_rate.value)) * mmr_solo_win.value))
-        document.getElementById("party_games").value = eval(mmr_goal_net.value / ((win_rate.value - (1 - win_rate.value)) * mmr_party_win.value))
-    }
-
-    function calculate_net() {
-        mmr_goal_net.value = eval(parseInt(mmr_goal.value) - parseInt(mmr_current.value))
-    }
-
-    function calculate_goal() {
-        mmr_goal.value = eval(parseInt(mmr_current.value) + parseInt(mmr_goal_net.value))
-    }
-
-    document.querySelector('#mmr_goal').addEventListener('change', function (e) {
-        calculate_net();
-    });
-
-    document.querySelector('#mmr_goal_net').addEventListener('change', function (e) {
-        calculate_goal();
-    });
-
-    document.querySelector('#win_rate').addEventListener('change', function (e) {
-        calculate_qtd_games();
-    });
-
-</script>
 
 </html>
